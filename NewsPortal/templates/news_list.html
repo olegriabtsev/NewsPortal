@@ -7,16 +7,16 @@
 <!-- Название у нас будет articles -->
 {% block content %}
    <h1>Все новости!!!</h1>
-   <ul>
+{% if products %}
+   <table>
        {% for post in posts %}
-           <li>
-               <h2>{{ post.title|censor }}</h2>
-               <p>Дата публикации: {{ post.pub_date|date:"d.m.Y" }}</p>
-               <p>{{ post.text|truncate-chars:20|censor }}</p>
-               <a href="{% url 'news-detail' post.pk %}">Подробнее</a>
-           </li>
-       {% empty %}
-           <p>Нет новостей.</p>
-       {% endfor %}
-   </ul>
+       <tr>
+           <td>{{ post.title|censor }}</td>
+           <td>{{ post.pub_date|date:"d.m.Y" }}</td>
+           <td>{{ post.text|truncatewords:20|censor }}</td>
+       </tr>
+   </table>
+       <h2>Новостей нет!</h2>
+   {% endfor %}
+{% endif %}
 {% endblock content %}

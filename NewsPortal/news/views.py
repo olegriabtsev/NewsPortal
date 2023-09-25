@@ -7,7 +7,7 @@ from .templatetags import custom_filters, custom_tags
 class NewsList(ListView):
     model = Post
     ordering = 'created_date'  # Отсортируем по дате публикации, чтобы новые новости были первыми
-    template_name = 'default.html'  # Используем шаблон default.html
+    template_name = 'news_list.html'  # Используем шаблон default.html
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -23,5 +23,5 @@ class NewsList(ListView):
 
 class NewsDetail(DetailView):
     model = Post
-    template_name = 'default.html'  # Используем шаблон default.html
+    template_name = 'news_detail.html'  # Используем шаблон default.html
     context_object_name = 'post'
