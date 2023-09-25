@@ -1,0 +1,22 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+{% load custom_tags %}
+
+<!-- Название у нас будет articles -->
+{% block content %}
+   <h1>Все новости!</h1>
+   <ul>
+       {% for post in posts %}
+           <li>
+               <h2>{{ post.title|censor }}</h2>
+               <p>Дата публикации: {{ post.pub_date|date:"d.m.Y" }}</p>
+               <p>{{ post.text|truncate-chars:20|censor }}</p>
+               <a href="{% url 'news-detail' post.pk %}">Подробнее</a>
+           </li>
+       {% empty %}
+           <p>Нет новостей.</p>
+       {% endfor %}
+   </ul>
+{% endblock content %}
