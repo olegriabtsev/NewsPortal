@@ -6,8 +6,8 @@ from .templatetags import custom_filters, custom_tags
 
 class NewsList(ListView):
     model = Post
-    ordering = 'created_date'  # Отсортируем по дате публикации, чтобы новые новости были первыми
-    template_name = 'news_list.html'  # Используем шаблон default.html
+    ordering = 'title'  # Отсортируем по дате публикации, чтобы новые новости были первыми
+    template_name = 'posts.html'  # Используем шаблон default.html
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -16,12 +16,10 @@ class NewsList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['time_now'] = datetime.utcnow()
-        context['next_sale'] = "Распродажа в среду!"
         return context
 
 
 class NewsDetail(DetailView):
     model = Post
-    template_name = 'news_detail.html'  # Используем шаблон default.html
+    template_name = 'post.html'  # Используем шаблон default.html
     context_object_name = 'post'

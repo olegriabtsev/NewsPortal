@@ -9,5 +9,5 @@ urlpatterns = [
    path('', NewsList.as_view()),
 
    # Добавьте новый URL-путь для деталей новости
-   path('<int:pk>/', NewsDetail.as_view()),
+   path('<int:pk>', NewsDetail.as_view()),
 ]
