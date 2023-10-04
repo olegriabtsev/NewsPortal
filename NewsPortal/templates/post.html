@@ -2,8 +2,27 @@
 
 {% block title %}
 Post
-{% end-block title %}
+{% endblock title %}
 
 {% block content %}
-<h1>{{ post }}</h1>
-{% end-block content %}
+<h1>{{ post.title }}</h1>
+
+   <hr>
+ {% if post %}
+       <table>
+           <tr>
+               <td> <h4><strong>Заголовок&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></h4> </td>
+               <td> <h4><strong>Дата публикации&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></h4> </td>
+               <td> <h4><strong>Текст статьи&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></h4> </td>
+           </tr>
+
+           <tr>
+               <td> {{ post.title }} </td>
+               <td> {{ post.created_date|date:'d M Y' }} </td>
+               <td> {{ post.text }} </td>
+           </tr>
+       </table>
+{% else %}
+       <h2>ТАКОЙ СТАТЬИ НЕТ!</h2>
+{% endif %}
+{% endblock content %}
